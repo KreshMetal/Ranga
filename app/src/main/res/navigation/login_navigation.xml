@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginScreenFragment">
+    <fragment
+        android:id="@+id/loginScreenFragment"
+        android:name="com.example.ranga.login.LoginScreenFragment"
+        android:label="Авторизация"
+        tools:layout="@layout/login_screen">
+
+        <action
+            android:id="@+id/action_loginScreenFragment_to_createAccFragment"
+            app:destination="@id/createAccFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createAccFragment"
+        android:name="com.example.ranga.login.CreateAccFragment"
+        android:label="Создание аккаунта"
+        tools:layout="@layout/create_acc_scree">
+
+        <action
+            android:id="@+id/action_createAccFragment_to_loginScreenFragment"
+            app:destination="@id/loginScreenFragment"/>
+    </fragment>
+</navigation>
