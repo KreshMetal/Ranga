@@ -1,5 +1,6 @@
 package com.example.ranga.login;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.ranga.App;
 import com.example.ranga.database.User;
 import com.example.ranga.database.UserDao;
+import com.example.ranga.main.MainActivity;
 
 import java.util.List;
 
@@ -42,6 +44,11 @@ public class LoginFragmentPresenter
     {
         long id = CheckLoginAndPass(login, pass);
         if (id == -1) Toast.makeText(mFragment.getContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(mFragment.getContext(), "Добро пожаловать!", Toast.LENGTH_SHORT).show();
+        else
+        {
+            Toast.makeText(mFragment.getContext(), "Добро пожаловать!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mFragment.getContext(), MainActivity.class);
+            mFragment.startActivity(intent);
+        }
     }
 }

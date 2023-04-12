@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/comixListFragment">
+    <fragment
+        android:id="@+id/comixListFragment"
+        android:name="com.example.ranga.main.comixList.ComixListFragment"
+        tools:layout="@layout/comix_list_screen"
+        android:label = "Комиксы">
+
+        <action
+            android:id="@+id/action_comixListFragment_to_addComixFragment"
+            app:destination="@id/addComixFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/addComixFragment"
+        android:name="com.example.ranga.main.comixList.AddComixFragmnet"
+        tools:layout="@layout/add_new_comix_screen"
+        android:label = "Добавить комикс">
+
+        <action
+            android:id="@+id/action_addComixFragment_to_comixListFragment"
+            app:destination="@id/comixListFragment"/>
+    </fragment>
+</navigation>

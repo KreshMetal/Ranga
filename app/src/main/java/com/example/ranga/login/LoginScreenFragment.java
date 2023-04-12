@@ -43,7 +43,8 @@ public class LoginScreenFragment extends Fragment
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 mPresenter.onLoginBtnWasClicked(loginText.getText().toString(), passText.getText().toString());
             }
         });
