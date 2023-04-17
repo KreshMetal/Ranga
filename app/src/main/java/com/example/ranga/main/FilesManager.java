@@ -13,12 +13,12 @@ import java.io.OutputStream;
 
 public class FilesManager
 {
-    public static File copyDirectoryToAppFilesDir(Context context, Uri sourceDirUri, File destinationFolder)
+    public static File copyDirectoryToFolder(Context context, Uri sourceDirUri, File destinationFolder)
     {
-        return copyDirectoryToAppFilesDir(context, DocumentFile.fromTreeUri(context, sourceDirUri), destinationFolder);
+        return copyDirectoryToFolder(context, DocumentFile.fromTreeUri(context, sourceDirUri), destinationFolder);
     }
 
-    private static File copyDirectoryToAppFilesDir(Context context, DocumentFile sourceDocumentFile, File destinationFolder) {
+    private static File copyDirectoryToFolder(Context context, DocumentFile sourceDocumentFile, File destinationFolder) {
         if (sourceDocumentFile != null && sourceDocumentFile.exists() && sourceDocumentFile.isDirectory()) {
             File destinationDir = new File(destinationFolder.getPath(), sourceDocumentFile.getName());
             if (!destinationDir.exists()) {
@@ -28,7 +28,7 @@ public class FilesManager
             DocumentFile[] sourceFiles = sourceDocumentFile.listFiles();
             for (DocumentFile sourceFile : sourceFiles) {
                 if (sourceFile.isDirectory()) {
-                    copyDirectoryToAppFilesDir(context, sourceFile, destinationDir);
+                    copyDirectoryToFolder(context, sourceFile, destinationDir);
                 } else {
                     copy(context, sourceFile.getUri(), destinationDir, sourceFile.getName());
                 }

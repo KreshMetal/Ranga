@@ -4,7 +4,6 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -65,7 +64,7 @@ public class AddComixFragmentPresenter {
 
     public void OnSaveBtnClicked(String name, String engName, String desc, String author)
     {
-        File folder = FilesManager.copyDirectoryToAppFilesDir(mFragmnet.getContext(), folderPath, mFragmnet.getContext().getFilesDir());
+        File folder = FilesManager.copyDirectoryToFolder(mFragmnet.getContext(), folderPath, mFragmnet.getContext().getFilesDir());
         FilesManager.copyFileToFolder(mFragmnet.getContext(), logoPath, folder, "logo.png");
         folderName = folder.getName();
         Comix comix = new Comix();

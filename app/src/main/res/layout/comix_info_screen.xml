@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+        <ImageView
+            android:id="@+id/comix_info_screen_logo"
+            android:layout_width="240dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_zgl" />
+
+        <TextView
+            android:id="@+id/comix_info_screen_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_logo"
+            android:textColor="@color/white"
+            android:text="Человек бензопила"
+            android:textSize="30sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <TextView
+            android:id="@+id/comix_info_screen_name_eng"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_name"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/grey_text"
+            android:textSize="20sp"
+            android:text="Chainsaw Man"/>
+
+        <Button
+            android:id="@+id/comix_info_screen_read_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_name_eng"
+            android:text="Читать"
+            android:layout_marginTop="8dp"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_begin="16dp"
+            android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintGuide_end="16dp"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@+id/comix_info_screen_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Подросток Дэндзи всего лишь хотел жить обычной жизнью и есть досыта, но оставшиеся после смерти отца долги вынуждают парня влачить полуголодное существование и жить в халупе. Чтобы расплатиться с якудза, он уже продал некоторые свои органы и даже промышляет нелегальной охотой на демонов, в чём ему помогает необычный питомец Потита, демоническое существо с бензопилой. Однажды коварные бандиты заманивают Дэндзи в ловушку и приносят в жертву, но Потита не даёт парню умереть. Он сращивает его тело и становится сердцем своего хозяина — теперь Дэндзи обладает повышенной регенерацией, а также может превращать конечности в бензопилы. Такого ценного кадра нанимает Бюро общественной безопасности, чтобы тот снова охотился на демонов. На новой работе парень знакомится с коллегами — меланхоличным охотником Аки, вспыльчивой полудемонессой Пауэр — и влюбляется в свою загадочную начальницу Макиму."
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_read_btn" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/comix_info_screen_rating"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_desc"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            android:name="com.example.ranga.main.comixList.AddComixFragmnet"
+            tools:layout="@layout/rating_info" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/comix_info_screen_comments"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/comix_info_screen_rating"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            android:name="com.example.ranga.main.comixList.AddComixFragmnet"
+            tools:layout="@layout/comments_selection" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
