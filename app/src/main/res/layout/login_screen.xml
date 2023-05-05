@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_end"
         android:hint="Логин"
         android:textColorHint="@color/grey_text"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:padding="8dp"
         android:textColor="@color/white"
         />
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_end"
         android:hint="Пароль"
         android:textColorHint="@color/grey_text"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:padding="8dp"
         android:inputType="textPassword"
         android:textColor="@color/white"
@@ -62,7 +62,8 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintEnd_toStartOf="@id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@id/login_screen_pass_text" />
+        app:layout_constraintTop_toBottomOf="@id/login_screen_pass_text"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/login_screen_create_acc_btn"

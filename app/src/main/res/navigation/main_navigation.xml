@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_comixListFragment_to_addComixFragment"
             app:destination="@id/addComixFragment"/>
+
+        <action
+            android:id="@+id/action_COmixListFragment_to_comixInfoFragment"
+            app:destination="@id/comixInfoFragment"/>
     </fragment>
 
     <fragment
@@ -25,4 +29,19 @@
             android:id="@+id/action_addComixFragment_to_comixListFragment"
             app:destination="@id/comixListFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/comixInfoFragment"
+        android:name="com.example.ranga.main.comixInfo.ComixInfoFragment"
+        tools:layout="@layout/comix_info_screen">
+
+        <action
+            android:id="@+id/action_comixInfoFragment_to_choiseChapterFragment"
+            app:destination="@id/choiseChapterFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/choiseChapterFragment"
+        android:name="com.example.ranga.main.comixInfo.ChoiseChapterFragment"
+        tools:layout="@layout/choise_chapter_screen"/>
 </navigation>

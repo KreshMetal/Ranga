@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_comix_logo"
         android:layout_marginTop="32dp"
         android:minHeight="48dp"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:textColor="@color/white"
         android:textColorHint="@color/grey_text"
         android:hint="Название"
@@ -53,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_comix_name"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:textColor="@color/white"
         android:textColorHint="@color/grey_text"
         android:hint="Английское название"
@@ -68,11 +69,12 @@
         app:layout_constraintTop_toBottomOf="@id/add_comix_name_eng"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:textColor="@color/white"
         android:textColorHint="@color/grey_text"
         android:hint="Описание"
         android:padding="8dp"
+        android:inputType="textMultiLine"
         />
 
     <EditText
@@ -84,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_comix_desc"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:background="@drawable/bottons_border"
+        android:background="@drawable/defolt_border"
         android:textColor="@color/white"
         android:textColorHint="@color/grey_text"
         android:hint="Автор"
@@ -92,10 +94,10 @@
 
     <TextView
         android:id="@+id/add_comix_folder"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintEnd_toStartOf="@id/guideline_end"
+        app:layout_constraintEnd_toStartOf="@id/add_comix_coise_folder_btn"
         app:layout_constraintTop_toBottomOf="@id/add_comix_author"
         android:layout_marginTop="16dp"
         android:textColor="@color/grey_text"
@@ -105,7 +107,9 @@
         android:text="Каталог с комиксом:"
         app:layout_constraintHorizontal_bias="0"
         android:minHeight="48dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:textAlignment="textStart"/>
 
     <Button
         android:id="@+id/add_comix_coise_folder_btn"
@@ -129,6 +133,7 @@
         app:layout_constraintTop_toBottomOf="@id/add_comix_folder"
         android:layout_marginTop="16dp"
         android:text="Добавить комикс"/>
+    
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
@@ -143,5 +148,6 @@
         android:layout_height="0dp"
         app:layout_constraintGuide_end="16dp"
         android:orientation="vertical"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

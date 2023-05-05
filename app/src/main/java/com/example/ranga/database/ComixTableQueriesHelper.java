@@ -17,7 +17,6 @@ public class ComixTableQueriesHelper
         InsertComixTask insertComixTask = new InsertComixTask(comix);
         insertComixTask.execute();
     }
-
     public static LiveData<List<Comix>> GetAllComixLD()
     {
         GetAllComixLDTask task = new GetAllComixLDTask();
@@ -32,6 +31,11 @@ public class ComixTableQueriesHelper
         }
     }
 
+    public static void DeleteComix(Comix comix)
+    {
+        DeleteComixTask task = new DeleteComixTask(comix);
+        task.execute();
+    }
     private static class InsertComixTask extends AsyncTask<Void, Void, Void>
     {
         private final Comix comix;
@@ -47,14 +51,29 @@ public class ComixTableQueriesHelper
             return null;
         }
     }
-
     private static class GetAllComixLDTask extends AsyncTask<Void, Void, LiveData<List<Comix>>>
     {
-
         @Override
         protected LiveData<List<Comix>> doInBackground(Void... voids)
         {
             return dao.getAllLD();
+        }
+    }
+
+    private static class DeleteComixTask extends AsyncTask<Void, Void, Void>
+    {
+        private Comix comix;
+
+        public DeleteComixTask(Comix comix)
+        {
+            this.comix = comix;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            dao.delete(comix);
+            return null;
         }
     }
 }

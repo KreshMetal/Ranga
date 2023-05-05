@@ -15,9 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.ranga.EditTextFragment;
 import com.example.ranga.R;
 
-public class AddComixFragmnet extends Fragment
+import java.util.regex.Pattern;
+
+public class AddComixFragmnet extends EditTextFragment
 {
     AddComixFragmentPresenter presenter;
     ImageView logo;
@@ -29,6 +32,9 @@ public class AddComixFragmnet extends Fragment
     EditText author;
     Button choiseFolderBtn;
     Button save;
+    private Pattern namePattenr = Pattern.compile(".{2,}");
+    private Pattern descPattenr = Pattern.compile(".{10,}");
+
 
 
     @Nullable
@@ -68,7 +74,6 @@ public class AddComixFragmnet extends Fragment
                         engName.getText().toString(),
                         desc.getText().toString(),
                         author.getText().toString());
-                Navigation.findNavController(view).navigate(R.id.action_addComixFragment_to_comixListFragment);
             }
         });
         return v;

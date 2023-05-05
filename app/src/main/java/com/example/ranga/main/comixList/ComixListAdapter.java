@@ -1,6 +1,7 @@
 package com.example.ranga.main.comixList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ranga.R;
 import com.example.ranga.database.Comix;
+import com.example.ranga.database.ComixTableQueriesHelper;
+import com.example.ranga.main.FilesManager;
 
 import java.util.List;
 
 public class ComixListAdapter extends RecyclerView.Adapter<ComixListAdapter.ViewHolder>
 {
+    public LayoutInflater getInflater() {
+        return inflater;
+    }
+
     private final LayoutInflater inflater;
 
     private final OnListItemWasCLicked clickListener;
@@ -62,6 +69,13 @@ public class ComixListAdapter extends RecyclerView.Adapter<ComixListAdapter.View
                 clickListener.onListItemWasCLicked(comix, holder.getAdapterPosition());
             }
         });
+    }
+
+    public void DeleteItem(int pos)
+    {
+        Comix comix = cards.get(pos);
+        FilesManager.DeleteDir(comix.nameFolder);
+        ComixTableQueriesHelper.DeleteComix(comix);
     }
 
     @Override

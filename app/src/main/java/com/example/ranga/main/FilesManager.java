@@ -2,6 +2,7 @@ package com.example.ranga.main;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.documentfile.provider.DocumentFile;
 
@@ -66,5 +67,17 @@ public class FilesManager
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void DeleteDir(String path) {
+        File directory = new File(path);
+            for (File file : directory.listFiles())
+            {
+                if (file.isDirectory())
+                    DeleteDir(file.getPath());
+                else
+                file.delete();
+            }
+        directory.delete();
     }
 }

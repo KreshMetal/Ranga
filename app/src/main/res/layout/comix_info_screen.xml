@@ -94,7 +94,6 @@
             app:layout_constraintTop_toBottomOf="@id/comix_info_screen_desc"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
-            android:name="com.example.ranga.main.comixList.AddComixFragmnet"
             tools:layout="@layout/rating_info" />
 
         <androidx.fragment.app.FragmentContainerView
@@ -105,7 +104,6 @@
             app:layout_constraintTop_toBottomOf="@id/comix_info_screen_rating"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
-            android:name="com.example.ranga.main.comixList.AddComixFragmnet"
             tools:layout="@layout/comments_selection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

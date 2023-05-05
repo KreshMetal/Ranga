@@ -178,7 +178,7 @@
         android:autoSizeTextType="uniform"
         android:layout_marginLeft="15dp"/>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rating_info_avatar"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -187,9 +187,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/rating_info_star1"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        android:background="@drawable/star"/>
+        />
 
     <ImageView
+        android:tag="1"
         android:id="@+id/rating_info_star1"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -197,9 +198,10 @@
         app:layout_constraintTop_toBottomOf="@id/rating_info_rating_selection_barrier_bot"
         app:layout_constraintStart_toEndOf="@id/rating_info_avatar"
         app:layout_constraintEnd_toStartOf="@id/rating_info_star2"
-        android:background="@drawable/star"/>
+        android:background="@drawable/fill_star"/>
 
     <ImageView
+        android:tag="2"
         android:id="@+id/rating_info_star2"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -207,9 +209,10 @@
         app:layout_constraintTop_toBottomOf="@id/rating_info_rating_selection_barrier_bot"
         app:layout_constraintStart_toEndOf="@id/rating_info_star1"
         app:layout_constraintEnd_toStartOf="@id/rating_info_star3"
-        android:background="@drawable/star"/>
+        android:background="@drawable/fill_star"/>
 
     <ImageView
+        android:tag="3"
         android:id="@+id/rating_info_star3"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -217,9 +220,10 @@
         app:layout_constraintTop_toBottomOf="@id/rating_info_rating_selection_barrier_bot"
         app:layout_constraintStart_toEndOf="@id/rating_info_star2"
         app:layout_constraintEnd_toStartOf="@id/rating_info_star4"
-        android:background="@drawable/star"/>
+        android:background="@drawable/fill_star"/>
 
     <ImageView
+        android:tag="4"
         android:id="@+id/rating_info_star4"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -227,9 +231,10 @@
         app:layout_constraintEnd_toStartOf="@id/rating_info_star5"
         app:layout_constraintStart_toEndOf="@id/rating_info_star3"
         app:layout_constraintTop_toBottomOf="@id/rating_info_rating_selection_barrier_bot"
-        android:background="@drawable/star"/>
+        android:background="@drawable/fill_star"/>
 
     <ImageView
+        android:tag="5"
         android:id="@+id/rating_info_star5"
         android:layout_width="36dp"
         android:layout_height="36dp"
@@ -237,7 +242,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/rating_info_star4"
         app:layout_constraintTop_toBottomOf="@id/rating_info_rating_selection_barrier_bot"
-        android:background="@drawable/star"/>
+        android:background="@drawable/fill_star"/>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/rating_info_PBS"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="rating_info_PB1, rating_info_PB2, rating_info_PB3, rating_info_PB4, rating_info_PB5"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/rating_info_stars"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="rating_info_star1, rating_info_star2, rating_info_star3, rating_info_star4, rating_info_star5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

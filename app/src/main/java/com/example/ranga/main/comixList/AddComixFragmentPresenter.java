@@ -2,14 +2,20 @@ package com.example.ranga.main.comixList;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.navigation.Navigation;
 
+import com.example.ranga.R;
 import com.example.ranga.database.Comix;
 import com.example.ranga.database.ComixTableQueriesHelper;
 import com.example.ranga.main.FilesManager;
@@ -64,16 +70,56 @@ public class AddComixFragmentPresenter {
 
     public void OnSaveBtnClicked(String name, String engName, String desc, String author)
     {
-        File folder = FilesManager.copyDirectoryToFolder(mFragmnet.getContext(), folderPath, mFragmnet.getContext().getFilesDir());
-        FilesManager.copyFileToFolder(mFragmnet.getContext(), logoPath, folder, "logo.png");
-        folderName = folder.getName();
         Comix comix = new Comix();
         comix.nameRus = name;
         comix.nameEng = engName;
         comix.desc = desc;
         comix.author = author;
-        comix.nameFolder = folder.getPath();
-        comix.size = folder.listFiles().length;
+        CopyComixTask copyComixTask = new CopyComixTask(mFragmnet.getActivity().getApplicationContext(),comix);
+        copyComixTask.execute();
+    }
+
+    private void SaveNewComixInBd(Comix comix)
+    {
         ComixTableQueriesHelper.InsertComixInBd(comix);
+    }
+
+    private class CopyComixTask extends AsyncTask<Void, Void, File>
+    {
+        private Dialog progressDialog;
+        private Comix comix;
+        private Context context;
+        public CopyComixTask(Context context, Comix comix)
+        {
+            this.context = context;
+            this.comix = comix;
+            progressDialog = new Dialog(mFragmnet.getActivity());
+            progressDialog.setContentView(R.layout.progress_bar_dialog);
+            progressDialog.setCancelable(false);
+        }
+        @Override
+        protected File doInBackground(Void... voids)
+        {
+            return FilesManager.copyDirectoryToFolder(context, folderPath, context.getFilesDir());
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(File folder)
+        {
+            super.onPostExecute(folder);
+            FilesManager.copyFileToFolder(context, logoPath, folder, "logo.png");
+            comix.nameFolder = folder.getPath();
+            comix.size = folder.listFiles().length;
+            SaveNewComixInBd(comix);
+            progressDialog.dismiss();
+            Navigation.findNavController(mFragmnet.getActivity(), R.id.main_nav_host_fragment).navigate(R.id.action_addComixFragment_to_comixListFragment);
+        }
     }
 }
