@@ -11,8 +11,6 @@ import java.util.List;
 @Dao
 public interface CommentDao
 {
-    @Query("SELECT * FROM comment")
-    List<Comment> getAll();
 
     @Query("SELECT * FROM comment WHERE comixid = :id")
     LiveData<List<Comment>> getByIdComix(long id);
@@ -20,6 +18,4 @@ public interface CommentDao
     @Insert
     void insert(Comment evaluation);
 
-    @Update
-    void update(Comment evaluation);
 }

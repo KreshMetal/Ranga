@@ -13,9 +13,6 @@ import java.util.List;
 public interface ComixDao
 {
     @Query("SELECT * FROM Comix")
-    List<Comix> getAll();
-
-    @Query("SELECT * FROM Comix")
     LiveData<List<Comix>> getAllLD();
 
     @Query("SELECT * FROM Comix WHERE id = :id")

@@ -10,18 +10,12 @@ import java.util.List;
 @Dao
 public interface UserDao
 {
-    @Query("SELECT * FROM user")
-    List<User> getAll();
-
-    @Query("SELECT * FROM User WHERE id = :id")
-    User getById(long id);
-
     @Query("SELECT * FROM User WHERE login = :login")
     User getByLogin(String login);
 
     @Insert
-    void insert(User employee);
+    void insert(User user);
 
     @Update
-    void update(User employee);
+    void update(User user);
 }

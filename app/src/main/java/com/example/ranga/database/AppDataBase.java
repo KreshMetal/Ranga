@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class, Comix.class, Evaluation.class, Comment.class}, version = 3)
+@Database(entities = {User.class, Comix.class, Evaluation.class, Comment.class}, version = 6)
 public abstract class AppDataBase extends RoomDatabase
 {
     public abstract UserDao userDao();

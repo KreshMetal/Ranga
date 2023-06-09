@@ -9,24 +9,22 @@ import android.widget.Toast;
 import com.example.ranga.App;
 import com.example.ranga.EditTextFragmentViewModel;
 import com.example.ranga.database.User;
+import com.example.ranga.database.UsersTableQueriesHelper;
 import com.example.ranga.main.MainActivity;
 
 import java.util.List;
 
 public class LoginFragmentViewModel extends EditTextFragmentViewModel
 {
-    private final UsersTableQueriesHelper helper;
 
     public LoginFragmentViewModel()
     {
         readys.postValue(new boolean[] {false, false});
-        helper = new UsersTableQueriesHelper(App.getInstance().getDatabase().userDao());
-        List<User> users = helper.GetUsersFromBd();
     }
 
     private User CheckLoginAndPass(String login, String pass)
     {
-        User user = helper.GetUserFromBd(login);
+        User user = UsersTableQueriesHelper.GetUserFromBd(login);
         if (user != null && user.pass.equals(pass)) return user;
         return null;
     }

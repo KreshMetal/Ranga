@@ -32,8 +32,8 @@ public class AddComixFragmnet extends EditTextFragment
     EditText author;
     Button choiseFolderBtn;
     Button save;
-    private Pattern namePattenr = Pattern.compile(".{2,}");
-    private Pattern descPattenr = Pattern.compile(".{10,}");
+    private Pattern namePattern = Pattern.compile(".{2,}");
+    private Pattern descPattern = Pattern.compile(".{10,}");
 
 
 

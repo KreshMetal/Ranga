@@ -3,30 +3,24 @@ package com.example.ranga.login;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 
-import com.example.ranga.App;
 import com.example.ranga.EditTextFragmentViewModel;
 import com.example.ranga.R;
 import com.example.ranga.database.User;
-
-import java.util.Arrays;
+import com.example.ranga.database.UsersTableQueriesHelper;
 
 public class CreateAccFragmentViewModel extends EditTextFragmentViewModel
 {
-    private final UsersTableQueriesHelper helper;
 
     public CreateAccFragmentViewModel()
     {
-        helper = new UsersTableQueriesHelper(App.getInstance().getDatabase().userDao());
         readys.postValue(new boolean[] {false, false, false, false, false});
     }
 
     private boolean CheckLoginOnBd(String login)
     {
-        User user = helper.GetUserFromBd(login);
+        User user = UsersTableQueriesHelper.GetUserFromBd(login);
         return user != null;
     }
 
@@ -38,7 +32,7 @@ public class CreateAccFragmentViewModel extends EditTextFragmentViewModel
             return;
         }
         User user = MakeUser(login, email, pass, avatar);
-        helper.InsertUserInBd(user);
+        UsersTableQueriesHelper.InsertUserInBd(user);
         Navigation.findNavController(view).navigate(R.id.action_createAccFragment_to_loginScreenFragment);
     }
 
@@ -49,6 +43,7 @@ public class CreateAccFragmentViewModel extends EditTextFragmentViewModel
         user.email = email;
         user.pass = pass;
         user.avatar = avatar;
+        user.status = "";
         return user;
     }
 

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ranga.R;
 import com.example.ranga.database.Comment;
+import com.example.ranga.database.User;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     }
 
     private List<Comment> comments;
+    private final OnCommentAvatarClickedListener listener;
 
-    public CommentListAdapter(Context context, List<Comment> comments)
+    public CommentListAdapter(Context context, List<Comment> comments, OnCommentAvatarClickedListener listener)
     {
         inflater = LayoutInflater.from(context);
         this.comments = comments;
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,6 +51,12 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         holder.nickname.setText(comment.user.login);
         holder.text.setText(comment.text);
 
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.OnClicked(comment.user);
+            }
+        });
     }
 
     @Override
@@ -68,5 +77,10 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             nickname = itemView.findViewById(R.id.comment_nickname);
             text = itemView.findViewById(R.id.comment_text);
         }
+    }
+
+    public interface OnCommentAvatarClickedListener
+    {
+        void OnClicked(User user);
     }
 }

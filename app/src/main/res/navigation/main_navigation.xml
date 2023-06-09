@@ -12,11 +12,19 @@
 
         <action
             android:id="@+id/action_comixListFragment_to_addComixFragment"
-            app:destination="@id/addComixFragment"/>
+            app:destination="@id/addComixFragment"
+            app:enterAnim="@anim/bottom_right_corner"
+            app:exitAnim="@anim/not_top_left_corner"
+            app:popEnterAnim="@anim/top_left_corner"
+            app:popExitAnim='@anim/not_bottom_right_corner' />
 
         <action
             android:id="@+id/action_COmixListFragment_to_comixInfoFragment"
-            app:destination="@id/comixInfoFragment"/>
+            app:destination="@id/comixInfoFragment"
+            app:enterAnim="@anim/slide_right"
+            app:exitAnim="@anim/slide_left"
+            app:popEnterAnim="@anim/slide_right"
+            app:popExitAnim="@anim/slide_left" />
     </fragment>
 
     <fragment
@@ -27,7 +35,9 @@
 
         <action
             android:id="@+id/action_addComixFragment_to_comixListFragment"
-            app:destination="@id/comixListFragment"/>
+            app:destination="@id/comixListFragment"
+            app:enterAnim="@anim/top_left_corner"
+            app:exitAnim="@anim/not_bottom_right_corner" />
     </fragment>
 
     <fragment
@@ -37,11 +47,27 @@
 
         <action
             android:id="@+id/action_comixInfoFragment_to_choiseChapterFragment"
-            app:destination="@id/choiseChapterFragment"/>
+            app:destination="@id/choiseChapterFragment"
+            app:enterAnim="@anim/slide_right"
+            app:exitAnim="@anim/slide_left"
+            app:popEnterAnim="@anim/slide_right"
+            app:popExitAnim="@anim/slide_left" />
+
+        <action
+            android:id="@+id/action_comixInfoFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_in" />
     </fragment>
 
     <fragment
         android:id="@+id/choiseChapterFragment"
         android:name="com.example.ranga.main.comixInfo.ChoiseChapterFragment"
         tools:layout="@layout/choise_chapter_screen"/>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.ranga.main.profile.ProfileFragment"
+        tools:layout="@layout/profile_layout">
+    </fragment>
 </navigation>

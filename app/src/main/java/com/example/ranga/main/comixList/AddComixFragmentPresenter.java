@@ -7,13 +7,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 import com.example.ranga.R;
 import com.example.ranga.database.Comix;
@@ -75,8 +83,10 @@ public class AddComixFragmentPresenter {
         comix.nameEng = engName;
         comix.desc = desc;
         comix.author = author;
+
         CopyComixTask copyComixTask = new CopyComixTask(mFragmnet.getActivity().getApplicationContext(),comix);
         copyComixTask.execute();
+
     }
 
     private void SaveNewComixInBd(Comix comix)
@@ -122,4 +132,35 @@ public class AddComixFragmentPresenter {
             Navigation.findNavController(mFragmnet.getActivity(), R.id.main_nav_host_fragment).navigate(R.id.action_addComixFragment_to_comixListFragment);
         }
     }
+
+
+    public static class CopyComixWorker extends Worker
+    {
+        public static final String URI_IN_FOLDER = "FOLDER_URI";
+        public static final String URI_IN_IMAGE = "IMAGE_URI";
+        public static final String KEY_OUT_FOLDER = "FOLDER_PATH";
+        public static final String KEY_OUT_SIZE = "FOLDER_SIZE";
+
+        public CopyComixWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+            super(context, workerParams);
+        }
+
+        @NonNull
+        @Override
+        public Result doWork()
+        {
+            Uri folderPath = Uri.parse(getInputData().getString(URI_IN_FOLDER));
+            Uri logoPath = Uri.parse(getInputData().getString(URI_IN_IMAGE));
+            File folder = FilesManager.copyDirectoryToFolder(getApplicationContext(), folderPath, getApplicationContext().getFilesDir());
+            FilesManager.copyFileToFolder(getApplicationContext(), logoPath, folder, "logo.png");
+
+            Data output = new Data.Builder()
+                    .putString(KEY_OUT_FOLDER, folder.getPath())
+                    .putInt(KEY_OUT_SIZE, folder.listFiles().length)
+                    .build();
+
+            return Result.success(output);
+        }
+    }
 }
+

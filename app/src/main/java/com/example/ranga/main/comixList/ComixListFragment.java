@@ -1,5 +1,7 @@
 package com.example.ranga.main.comixList;
 
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ public class ComixListFragment extends Fragment
         View view = inflater.inflate(R.layout.comix_list_screen, container, false);
 
         RecyclerView comixList = (RecyclerView) view.findViewById(R.id.comix_list_screen_list);
+        comixList.addItemDecoration(new ItemSpacingDecoration(16));
         ComixListAdapter adapter = new ComixListAdapter(getContext(), new ArrayList<Comix>(), new ComixListAdapter.OnListItemWasCLicked() {
             @Override
             public void onListItemWasCLicked(Comix comix, int position)
@@ -66,4 +69,7 @@ public class ComixListFragment extends Fragment
         });
         return view;
     }
+
+
+
 }

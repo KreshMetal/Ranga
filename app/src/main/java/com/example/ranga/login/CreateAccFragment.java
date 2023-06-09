@@ -37,7 +37,7 @@ public class CreateAccFragment extends EditTextFragment
     private int avatarId = 0;
     private Pattern loginPattern = Pattern.compile("^(?=.*[a-zA-Z])[a-zA-Z0-9_]{3,}$");
     private Pattern emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
-    private Pattern passPattern = Pattern.compile(".{8,}");
+    private Pattern passPattern = Pattern.compile(".{5,}");
 
     @Nullable
     @Override

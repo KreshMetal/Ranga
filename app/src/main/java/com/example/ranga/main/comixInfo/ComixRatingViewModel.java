@@ -65,7 +65,7 @@ public class ComixRatingViewModel extends ViewModel
         {
             Evaluation evaluation = new Evaluation();
             evaluation.user = App.getInstance().getUser();
-            evaluation.comix = comix;
+            evaluation.comixId = comix.id;
             evaluation.rating = star;
             EvaluationTableQuariesHelper.InsertInBd(evaluation);
             GetUserEvaluation();

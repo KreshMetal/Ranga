@@ -1,8 +1,11 @@
 package com.example.ranga.login;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,7 +33,7 @@ public class LoginScreenFragment extends EditTextFragment
     private Button loginBtn;
     private Button createBtn;
     private Pattern loginPattern = Pattern.compile("^(?=.*[a-zA-Z])[a-zA-Z0-9_]{3,}$");
-    private Pattern passPattern = Pattern.compile(".{8,}");
+    private Pattern passPattern = Pattern.compile(".{5,}");
 
 
     @Nullable
@@ -76,15 +81,4 @@ public class LoginScreenFragment extends EditTextFragment
         });
         return v;
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
-        super.onViewCreated(view, savedInstanceState);
-//      SharedPreferences pref = getContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-//      String login = pref.getString("LastLogin", "");
-//      loginText.setText(login);
-    }
-
-
 }

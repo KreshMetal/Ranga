@@ -1,5 +1,6 @@
 package com.example.ranga.main.comixInfo;
 
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.ranga.App;
 import com.example.ranga.R;
@@ -93,6 +96,13 @@ public class ComixRatingFragment extends Fragment
 
         long currentStars = model.GetUserEvaluation();
         PaintStars((int)currentStars);
+
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_comixInfoFragment_to_profileFragment);
+            }
+        });
 
         return view;
     }

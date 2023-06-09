@@ -18,7 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_zgl" />
+            app:srcCompat="@drawable/logo_zgl"
+            />
 
         <TextView
             android:id="@+id/comix_info_screen_name"

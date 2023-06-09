@@ -10,13 +10,11 @@
         android:id="@+id/login_screen_logo"
         android:layout_width="144dp"
         android:layout_height="144dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/ranga_logo"
-        tools:layout_editor_absoluteY="16dp"
-        android:background="@color/white" />
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/login_screen_login_text"

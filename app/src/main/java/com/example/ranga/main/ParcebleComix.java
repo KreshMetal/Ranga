@@ -10,7 +10,6 @@ import com.example.ranga.database.Comix;
 public class ParcebleComix implements Parcelable
 {
     private Comix comix;
-
     public ParcebleComix(Comix comix)
     {
         this.comix = comix;

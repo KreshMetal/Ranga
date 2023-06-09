@@ -16,12 +16,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ranga.App;
 import com.example.ranga.R;
 import com.example.ranga.database.Comix;
 import com.example.ranga.database.Comment;
+import com.example.ranga.database.User;
+import com.example.ranga.database.UsersTableQueriesHelper;
 import com.example.ranga.main.ParcebleComix;
+import com.example.ranga.main.ParcebleUser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +53,23 @@ public class ComixCommentsFragment extends Fragment
 
         Comix comix = ((ParcebleComix)getArguments().getParcelable(ParcebleComix.class.getSimpleName())).getComix();
         Log.d("TEST", comix.id + "");
-        CommentListAdapter adapter = new CommentListAdapter(getContext(), new ArrayList<Comment>());
+        CommentListAdapter adapter = new CommentListAdapter(getContext(), new ArrayList<Comment>(), new CommentListAdapter.OnCommentAvatarClickedListener() {
+            @Override
+            public void OnClicked(User user)
+            {
+                if (user.id != App.getInstance().getUser().id)
+                {
+                    Bundle args = new Bundle();
+                    User usr = UsersTableQueriesHelper.GetUserFromBd(user.login);
+                    args.putParcelable(ParcebleUser.class.getSimpleName(),new ParcebleUser(usr));
+                    Navigation.findNavController(view).navigate(R.id.action_comixInfoFragment_to_profileFragment, args);
+                }
+                else
+                {
+                    Navigation.findNavController(view).navigate(R.id.action_comixInfoFragment_to_profileFragment);
+                }
+            }
+        });
         ComixCommentsViewModelFactory factory = new ComixCommentsViewModelFactory(comix);
         ComixCommentsViewModel model = new ViewModelProvider(this, factory).get(ComixCommentsViewModel.class);
 

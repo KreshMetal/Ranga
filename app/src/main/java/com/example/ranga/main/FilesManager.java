@@ -76,7 +76,7 @@ public class FilesManager
                 if (file.isDirectory())
                     DeleteDir(file.getPath());
                 else
-                file.delete();
+                    file.delete();
             }
         directory.delete();
     }

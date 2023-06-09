@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import com.example.ranga.App;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EvaluationTableQuariesHelper
 {
@@ -28,6 +30,20 @@ public class EvaluationTableQuariesHelper
     public static LiveData<List<Evaluation>> GetAllEvaluationForComix(Comix comix)
     {
         GetAllEvaluationForComixTask task = new GetAllEvaluationForComixTask(comix.id);
+        task.execute();
+        try
+        {
+            return task.get();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    public static LiveData<List<Evaluation>> GetAllEvaluationForUser(long userId)
+    {
+        GetAllEvaluationsForUserTask task = new GetAllEvaluationsForUserTask(userId);
         task.execute();
         try
         {
@@ -116,6 +132,23 @@ public class EvaluationTableQuariesHelper
         protected Evaluation doInBackground(Void... voids)
         {
             return dao.getByIdComixForUser(comixId, userId);
+        }
+    }
+
+    private static class GetAllEvaluationsForUserTask extends AsyncTask<Void, Void, LiveData<List<Evaluation>>>
+    {
+        private final long userId;
+
+        public GetAllEvaluationsForUserTask(long userId)
+        {
+            this.userId = userId;
+        }
+
+
+        @Override
+        protected LiveData<List<Evaluation>> doInBackground(Void... voids)
+        {
+            return dao.getAllUserEvaluations(userId);
         }
     }
 }
